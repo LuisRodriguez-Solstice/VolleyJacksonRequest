@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
 
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						Log.d("test", "onErrorResponse");
 						error.printStackTrace();
 					}
 					
