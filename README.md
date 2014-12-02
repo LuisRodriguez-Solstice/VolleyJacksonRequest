@@ -1,3 +1,3 @@
 VolleyJacksonRequest
 ====================
-Library containing Volley and Jackson and JsonRequest implementation to fetch from source with Volley and map to supplied POJO.
+Library containing Volley and Jackson and JsonRequest implementation to make a network request and map the response to a POJO.
