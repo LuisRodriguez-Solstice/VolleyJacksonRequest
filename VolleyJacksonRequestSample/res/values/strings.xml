@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VolleyJacksonRequestSample</string>
+    
+    <string name="request">Requesting data from http://date.jsontest.com</string>
+
+</resources>
