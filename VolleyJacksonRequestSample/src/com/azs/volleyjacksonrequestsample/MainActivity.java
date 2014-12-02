@@ -2,7 +2,6 @@ package com.azs.volleyjacksonrequestsample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.android.volley.Request.Method;
