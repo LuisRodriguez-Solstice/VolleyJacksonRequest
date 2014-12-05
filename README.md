@@ -66,6 +66,8 @@ public void makeRequest() {
       }
       
     });
+    
+    getVolleyRequestQueue().add(pojoRequest);
 }
 
 ...
