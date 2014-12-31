@@ -3,6 +3,8 @@ package com.azs.vj;
 import java.io.IOException;
 import java.util.Map;
 
+import org.json.JSONObject;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -52,7 +54,6 @@ public class VJRequest<T> extends JsonRequest<T> {
 	}
 
 	private TypeReference<T> responseType;
-	private Map<String, String> params;
 	private ObjectMapper mapper;
 
 	/**
@@ -61,7 +62,7 @@ public class VJRequest<T> extends JsonRequest<T> {
 	 * @param method
 	 *            int one of com.android.volley.Request.Method ints
 	 * @param url
-	 * @param params
+	 * @param requestBody
 	 *            any post parameters
 	 * @param responseType
 	 *            TypeReference<T> anonymous class that wraps the object that
@@ -75,25 +76,19 @@ public class VJRequest<T> extends JsonRequest<T> {
 	 *            Response.ErrorListener to be called on network error or object
 	 *            mapping error
 	 */
-	public VJRequest(int method, String url, Map<String, String> params, TypeReference<T> responseType, ObjectMapper mapper, Response.Listener<T> successListener, Response.ErrorListener errorListener) {
-		super(method, url, null, successListener, errorListener);
+	public VJRequest(int method, String url, JSONObject requestBody, TypeReference<T> responseType, ObjectMapper mapper, Response.Listener<T> successListener, Response.ErrorListener errorListener) {
+		super(method, url, (requestBody == null ? null : requestBody.toString()), successListener, errorListener);
 
 		this.responseType = responseType;
-		this.params = params;
 		this.mapper = mapper;
 	}
 
-	public VJRequest(int method, String url, Map<String, String> params, TypeReference<T> responseType, Response.Listener<T> successListener, Response.ErrorListener errorListener) {
-		this(method, url, params, responseType, getDefaultMapper(), successListener, errorListener);
+	public VJRequest(int method, String url, JSONObject requestBody, TypeReference<T> responseType, Response.Listener<T> successListener, Response.ErrorListener errorListener) {
+		this(method, url, requestBody, responseType, getDefaultMapper(), successListener, errorListener);
 	}
 
 	public VJRequest(int method, String url, TypeReference<T> responseType, Response.Listener<T> successListener, Response.ErrorListener errorListener) {
-		this(method, url, null, responseType, getDefaultMapper(), successListener, errorListener);
-	}
-
-	@Override
-	protected Map<String, String> getParams() throws AuthFailureError {
-		return params;
+		this(method, url, null, responseType, successListener, errorListener);
 	}
 
 	/**
